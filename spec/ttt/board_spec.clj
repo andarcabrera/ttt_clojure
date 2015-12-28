@@ -31,5 +31,16 @@
     (should= true (solved-board? board)))
   )
 
+(describe "available-spot"
+  (it "returns true if a spot is available"
+    (def board ["X" "1" "Y" 3 "Y" 5 "Y" "X" "X" ])
+    (should= true (available-spot? board 3)))
+
+  (it "returns false if a spot is not available"
+    (def board ["X" "1" "Y" 3 "Y" 5 "Y" "X" "X" ])
+    (should= false (available-spot? board 0)))
+
+  )
+
 
 

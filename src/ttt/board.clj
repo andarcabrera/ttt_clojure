@@ -46,3 +46,6 @@
 (defn solved-board? [board]
   (if (or (solved-row? board) (solved-column? board) (solved-left-diagonal? board) (solved-right-diagonal? board)) true false))
 
+(defn available-spot? [board position]
+  (= (board position) position))
+
