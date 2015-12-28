@@ -10,15 +10,13 @@
     (should= 16 (count (surface 16)))))
 
 (describe "solved-board?"
-  (it "returns true if there is a winner"
-    (def board1 ["X" "X" "X" "Y" "Y" 5 6 7 8 ])
-    (def markers1 ["X" "Y"])
-    (should= true (solved-board? board1 markers1)))
+ (it "returns false if there is no winner"
+  (def board2 ["X" "Y" "X" "Y" "X" 5 6 7 8 ])
+  (should= false (solved-board? board2)))
 
-  (xit "returns false if there is no winner"
-    (def board2 ["X" "Y" "X" "Y" "X" 5 6 7 8 ])
-    (def markers2 ["X" "Y"])
-    (should= false (solved-board? board2 markers2))))
+  (it "returns true if a row is solved"
+    (def board1 ["X" "X" "X" "Y" "Y" 5 6 7 8 ])
+    (should= true (solved-board? board1))))
 
 
 
