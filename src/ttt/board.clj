@@ -3,33 +3,34 @@
 (defn surface [size]
   (vec (range size)))
 
-(defn- partitioned-board [board]
-  (partition 3 board))
+(defn partitioner [board]
+  (int (Math/sqrt (count board))))
 
-(defn- transpose-board [board]
+(defn partitioned-board [board]
+  (partition (partitioner board) board))
+
+(defn transpose-board [board]
   (apply mapv vector board))
 
 (defn- check-rows [board]
-  (let [board-rows (transpose-board (partitioned-board board))]
-  (map = (board-rows 0) (board-rows 1) (board-rows 2))))
+  (map #(= 1 (count (set %))) (partitioned-board board)))
 
 (defn- check-columns [board]
-  (let [board-columns (apply vector(partitioned-board board))]
-  (map = (board-columns 0) (board-columns 1) (board-columns 2))))
+  (map #(= 1 (count (set %))) (transpose-board (partitioned-board board))))
 
 (defn- get-left-diagonal [board]
-  (loop [current-position 0 diagonal []]
-    (if (= 3 (count diagonal))
+  (loop [current-position 0 diagonal [] partitioner (partitioner board)]
+    (if (= partitioner (count diagonal))
       diagonal
-      (if (= 0 (mod current-position 4))
-        (recur (inc current-position) (conj diagonal (board current-position)))
-        (recur (inc current-position) diagonal)))))
+      (if (= 0 (mod current-position (+ 1 partitioner)))
+        (recur (inc current-position) (conj diagonal (board current-position)) partitioner)
+        (recur (inc current-position) diagonal partitioner)))))
 
 (defn- get-right-diagonal [board]
-  (loop [current-position 2 diagonal []]
-    (if (= 3 (count diagonal))
+  (loop [partitioner (partitioner board) current-position (- partitioner 1) diagonal []]
+    (if (= partitioner (count diagonal))
       diagonal
-    (recur (+ 2 current-position) (conj diagonal (board current-position))))))
+    (recur partitioner (+ (- partitioner 1) current-position) (conj diagonal (board current-position))))))
 
 (defn- solved-row? [board]
   (some true? (check-rows board)))

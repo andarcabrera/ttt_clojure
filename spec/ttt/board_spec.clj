@@ -14,20 +14,48 @@
   (def board ["X" "Y" "X" "Y" "X" 5 6 7 8 ])
   (should= false (solved-board? board)))
 
-  (it "returns true if a row is solved"
+  (it "returns true if a row is solved on a 3X3 board"
     (def board ["X" "X" "X" "Y" "Y" 5 6 7 8 ])
     (should= true (solved-board? board)))
 
-  (it "returns true if a column is solved"
+  (it "returns true if a row is solved on a 4X4 board"
+    (def board [0 1 2 3 4 "Y" "Y" "Y" 8 9 10 11 "X" "X" "X" "X"])
+    (should= true (solved-board? board)))
+
+  (it "returns false if a row is not solved on a 4X4 board"
+    (def board [0 1 2 3 4 "Y" "Y" "Y" 8 9 10 11 "X" "X" "X" "Y"])
+    (should= false (solved-board? board)))
+
+  (it "returns true if a column is solved on 3X3 board"
     (def board ["X" "Y" "X" 3 "Y" 5 6 "Y" 8 ])
     (should= true (solved-board? board)))
+
+  (it "returns true if a column is solved on 4X4 board"
+    (def board ["X" 1 2 3 "X" "Y" "Y" "Y" "X" 9 10 11 "X" "Y" "Y" "Y"])
+    (should= true (solved-board? board)))
+
+  (it "returns false if a column is not solved on 4X4 board"
+    (def board [0 "X" 2 3 "Y" "X" 6 7 8 "X" 10 11 "Y" 13 14 15])
+    (should= false (solved-board? board)))
 
   (it "returns true if the left diagonal is solved"
     (def board ["X" "Y" 2 3 "X" 5 6 "Y" "X" ])
     (should= true (solved-board? board)))
 
+  (it "returns true if the left diagonal is solved on a 4X4 board"
+    (def board ["X" 1 2 3 4 "X" 6 7 8 9 "X" 11 "Y" 13 14 "X"])
+    (should= true (solved-board? board)))
+
+  (it "returns false if the left diagonal is not solved on a 4X4 board"
+    (def board ["X" 1 2 3 4 "X" 6 7 8 9 "X" 11 "Y" 13 14 "Y"])
+    (should= false (solved-board? board)))
+
   (it "returns true if the right diagonal is solved"
     (def board ["X" 1 "Y" 3 "Y" 5 "Y" "X" "X" ])
+    (should= true (solved-board? board)))
+
+  (it "returns true if the right diagonal is solved on a 4X4 board"
+    (def board [0 1 2 "Y" 4 "X" "Y" 7 8 "Y" "X" 11 "Y" 13 14 "Y"])
     (should= true (solved-board? board)))
   )
 
