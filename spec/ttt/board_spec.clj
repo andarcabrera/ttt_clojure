@@ -11,16 +11,20 @@
 
 (describe "solved-board?"
  (it "returns false if there is no winner"
-  (def board2 ["X" "Y" "X" "Y" "X" 5 6 7 8 ])
-  (should= false (solved-board? board2)))
+  (def board ["X" "Y" "X" "Y" "X" 5 6 7 8 ])
+  (should= false (solved-board? board)))
 
   (it "returns true if a row is solved"
-    (def board1 ["X" "X" "X" "Y" "Y" 5 6 7 8 ])
-    (should= true (solved-board? board1)))
+    (def board ["X" "X" "X" "Y" "Y" 5 6 7 8 ])
+    (should= true (solved-board? board)))
 
   (it "returns true if a column is solved"
-    (def board1 ["X" "Y" "X" 3 "Y" 5 6 "Y" 8 ])
-    (should= true (solved-board? board1)))
+    (def board ["X" "Y" "X" 3 "Y" 5 6 "Y" 8 ])
+    (should= true (solved-board? board)))
+
+  (it "returns true if the left diagonal is solved"
+    (def board ["X" "Y" 2 3 "X" 5 6 "Y" "X" ])
+    (should= true (solved-board? board)))
   )
 
 
