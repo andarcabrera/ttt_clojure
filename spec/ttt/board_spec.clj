@@ -56,8 +56,16 @@
 
 (describe "tied-board"
   (it "returns true if the board is tied"
-    (def board ["X" "X" "Y" "X" "Y" "Y" "Y" "Y" "X" ])
-    (should= true (tied-board? board))))
+    (def board ["X" "Y" "X" "X" "Y" "X" "Y" "X" "Y" ])
+    (should= true (tied-board? board)))
+
+  (it "return false if the board is not tied"
+    (def board ["X" "Y" "X" "Y" 4 5 6 7 8 ])
+    (should= false (tied-board? board)))
+
+  (it "return false if the board is solved"
+    (def board ["X" "X" "Y" "X" "Y" "Y" "Y" "X" "Y" ])
+    (should= false (tied-board? board))))
 
 
 
