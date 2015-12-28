@@ -49,3 +49,8 @@
 (defn available-spot? [board position]
   (= (board position) position))
 
+(defn fill-spot [board position marker]
+  (if (available-spot? board position)
+   (assoc board position marker)
+   board))
+

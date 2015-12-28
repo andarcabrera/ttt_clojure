@@ -27,20 +27,27 @@
     (should= true (solved-board? board)))
 
   (it "returns true if the right diagonal is solved"
-    (def board ["X" "1" "Y" 3 "Y" 5 "Y" "X" "X" ])
+    (def board ["X" 1 "Y" 3 "Y" 5 "Y" "X" "X" ])
     (should= true (solved-board? board)))
   )
 
 (describe "available-spot"
   (it "returns true if a spot is available"
-    (def board ["X" "1" "Y" 3 "Y" 5 "Y" "X" "X" ])
+    (def board ["X" 1 "Y" 3 "Y" 5 "Y" "X" "X" ])
     (should= true (available-spot? board 3)))
 
   (it "returns false if a spot is not available"
-    (def board ["X" "1" "Y" 3 "Y" 5 "Y" "X" "X" ])
-    (should= false (available-spot? board 0)))
+    (def board ["X" 1 "Y" 3 "Y" 5 "Y" "X" "X" ])
+    (should= false (available-spot? board 0))))
 
-  )
+(describe "fill-spot"
+  (it "updates the spot with the given marker if spot is available"
+    (def board ["X" 1 "Y" 3 "Y" 5 "Y" "X" "X" ])
+    (should= ["X" "X" "Y" 3 "Y" 5 "Y" "X" "X" ] (fill-spot board 1 "X")))
+
+  (it "does not update the spot with the given marker if spot is not available"
+    (def board ["X" 1 "Y" 3 "Y" 5 "Y" "X" "X" ])
+    (should= ["X" 1 "Y" 3 "Y" 5 "Y" "X" "X" ] (fill-spot board 4 "X"))) )
 
 
 
