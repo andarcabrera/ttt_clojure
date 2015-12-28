@@ -1,8 +1,11 @@
 (ns ttt.core
-  (:require [ttt.board :as board]))
+  (:require [ttt.board :as board]
+            [ttt.input :as input]
+            [ttt.output :as output]
+            [ttt.views :as views]))
 
 (defn -main []
-  (println "Hello World"))
+  (output/prompt views/welcome-message))
 
 
 
