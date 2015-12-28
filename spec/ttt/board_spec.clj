@@ -25,6 +25,10 @@
   (it "returns true if the left diagonal is solved"
     (def board ["X" "Y" 2 3 "X" 5 6 "Y" "X" ])
     (should= true (solved-board? board)))
+
+  (it "returns true if the right diagonal is solved"
+    (def board ["X" "1" "Y" 3 "Y" 5 "Y" "X" "X" ])
+    (should= true (solved-board? board)))
   )
 
 

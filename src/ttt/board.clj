@@ -17,13 +17,19 @@
   (let [board-columns (apply vector(partitioned-board board))]
   (map = (board-columns 0) (board-columns 1) (board-columns 2))))
 
-(defn get-left-diagonal [board]
+(defn- get-left-diagonal [board]
   (loop [current-position 0 diagonal []]
     (if (= 3 (count diagonal))
       diagonal
       (if (= 0 (mod current-position 4))
         (recur (inc current-position) (conj diagonal (board current-position)))
         (recur (inc current-position) diagonal)))))
+
+(defn- get-right-diagonal [board]
+  (loop [current-position 2 diagonal []]
+    (if (= 3 (count diagonal))
+      diagonal
+    (recur (+ 2 current-position) (conj diagonal (board current-position))))))
 
 (defn- solved-row? [board]
   (some true? (check-rows board)))
@@ -34,6 +40,9 @@
 (defn- solved-left-diagonal? [board]
   (if (= 1 (count (set (get-left-diagonal board)))) true false))
 
+(defn- solved-right-diagonal? [board]
+  (if (= 1 (count (set (get-right-diagonal board)))) true false))
+
 (defn solved-board? [board]
-  (if (or (solved-row? board) (solved-column? board) (solved-left-diagonal? board)) true false))
+  (if (or (solved-row? board) (solved-column? board) (solved-left-diagonal? board) (solved-right-diagonal? board)) true false))
 
