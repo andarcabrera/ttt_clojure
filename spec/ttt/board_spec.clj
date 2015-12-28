@@ -16,7 +16,12 @@
 
   (it "returns true if a row is solved"
     (def board1 ["X" "X" "X" "Y" "Y" 5 6 7 8 ])
-    (should= true (solved-board? board1))))
+    (should= true (solved-board? board1)))
+
+  (it "returns true if a column is solved"
+    (def board1 ["X" "Y" "X" 3 "Y" 5 6 "Y" 8 ])
+    (should= true (solved-board? board1)))
+  )
 
 
 
