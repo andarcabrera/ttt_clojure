@@ -57,3 +57,7 @@
    (assoc board position marker)
    board))
 
+(defn tied-board? [board]
+  (not-any? true? (map board (range 9))))
+
+

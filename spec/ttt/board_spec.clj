@@ -54,5 +54,10 @@
     (def board ["X" 1 "Y" 3 "Y" 5 "Y" "X" "X" ])
     (should= ["X" 1 "Y" 3 "Y" 5 "Y" "X" "X" ] (fill-spot board 4 "X"))) )
 
+(describe "tied-board"
+  (it "returns true if the board is tied"
+    (def board ["X" "X" "Y" "X" "Y" "Y" "Y" "Y" "X" ])
+    (should= true (tied-board? board))))
+
 
 
