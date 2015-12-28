@@ -3,13 +3,13 @@
 (defn surface [size]
   (vec (range size)))
 
-(defn partitioner [board]
+(defn- partitioner [board]
   (int (Math/sqrt (count board))))
 
-(defn partitioned-board [board]
+(defn- partitioned-board [board]
   (partition (partitioner board) board))
 
-(defn transpose-board [board]
+(defn- transpose-board [board]
   (apply mapv vector board))
 
 (defn- check-rows [board]
