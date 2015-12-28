@@ -49,6 +49,9 @@
 (defn available-spot? [board position]
   (= (board position) position))
 
+(defn all-available-spots [board]
+  (filter #(available-spot? board %) (range 9)))
+
 (defn fill-spot [board position marker]
   (if (available-spot? board position)
    (assoc board position marker)

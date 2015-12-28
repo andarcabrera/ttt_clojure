@@ -40,6 +40,11 @@
     (def board ["X" 1 "Y" 3 "Y" 5 "Y" "X" "X" ])
     (should= false (available-spot? board 0))))
 
+(describe "all-available-spots"
+  (it "returns all available spots on the board"
+    (def board ["X" 1 "Y" 3 "Y" 5 "Y" "X" "X" ])
+    (should= [1 3 5] (all-available-spots board))))
+
 (describe "fill-spot"
   (it "updates the spot with the given marker if spot is available"
     (def board ["X" 1 "Y" 3 "Y" 5 "Y" "X" "X" ])
