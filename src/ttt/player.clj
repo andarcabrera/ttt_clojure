@@ -15,3 +15,6 @@
   {:name (get-player-name)
    :marker (get-player-marker)})
 
+(defn make-move []
+  3)
+

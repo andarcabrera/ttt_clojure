@@ -15,7 +15,7 @@
   (should= false (solved-board? board)))
 
   (it "returns true if a row is solved on a 3X3 board"
-    (def board ["X" "X" "X" "Y" "Y" 5 6 7 8 ])
+    (def board ["X" "X" "X" "Y" "Y" 5 6 7 8])
     (should= true (solved-board? board)))
 
   (it "returns true if a row is solved on a 4X4 board"

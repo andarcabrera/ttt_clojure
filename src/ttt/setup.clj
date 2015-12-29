@@ -14,8 +14,10 @@
 (defn board-size []
   (loop [sizes (repeatedly get-board-size)]
     (let [size (first sizes)]
-      (if (contains? #{"1" "2"} size)
-      size
+      (cond
+        (= "1" size) 9
+        (= "2" size) 16
+        :else
       (do (invalid-board-size)
         (recur (next sizes)))))))
 

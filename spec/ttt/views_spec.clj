@@ -21,3 +21,10 @@
 (describe "invalid-board-size"
   (it "displays prompt for invalid board size"
     (should= "That is an invalid entry. Please select option 1 or 2." invalid-board-size)))
+
+(describe "Move prompt"
+  (it "prompts player to make a move "
+    (should= "Make your move, " player-prompt)))
+
+
+

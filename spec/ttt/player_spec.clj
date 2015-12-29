@@ -22,3 +22,21 @@
   (it "contains the player marker"
     (should= "X"
         ((create-player) :marker))))
+
+(describe "make-move"
+  (around [it]
+    (with-out-str (it)))
+
+  (it "asks for player spot choice"
+    (should= 3
+      (with-in-str "3"
+        (make-move)))))
+
+; (describe "make-move"
+;   (around [it]
+;     (with-out-str (it)))
+
+;   (it "asks for player spot choice"
+;     (should= 3
+;       (with-in-str (make-input '("nine" "1"))
+;         (board-size)))))

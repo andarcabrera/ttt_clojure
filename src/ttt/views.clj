@@ -9,3 +9,5 @@
 (def board-size "Please select board-size:\n\t1.\t3X3 board\n\t2.\t4X4 board")
 
 (def invalid-board-size "That is an invalid entry. Please select option 1 or 2.")
+
+(def player-prompt "Make your move, ")

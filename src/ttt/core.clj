@@ -8,7 +8,9 @@
 
 (defn -main []
   (output/prompt views/welcome-message)
-  (setup/board-size))
+  (let [players (setup/players) board (board/surface (setup/board-size))]
+    (board/display-board board)
+    (println players)))
 
 
 

@@ -1,4 +1,5 @@
-(ns ttt.board)
+(ns ttt.board
+  (:require [ttt.output :as output]))
 
 (defn surface [size]
   (vec (range size)))
@@ -61,5 +62,10 @@
 (defn tied-board? [board]
   (println (solved-board? board))
   (and (not-any? true? (map = board (range 9))) (= false (solved-board? board))))
+
+(defn display-board [board]
+  (doseq [row (partitioned-board board)]
+  (output/prompt row)))
+
 
 

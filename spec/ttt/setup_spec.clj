@@ -10,11 +10,11 @@
 (describe "board-size"
    (around [it]
     (with-redefs
-      [ input/get-user-input #(str "1")
+      [ input/get-user-input #(str "2")
         output/prompt (constantly nil)]
       (it)))
   (it "asks for board-size"
-    (should= "1"
+    (should= 16
         (board-size))))
 
 (describe "board-size"
@@ -22,7 +22,7 @@
     (with-out-str (it)))
 
   (it "prompts user to re-enter selection if the selection is invalid until a valid selection is made"
-    (should= "1"
+    (should= 9
       (with-in-str (make-input '("nine" "1"))
         (board-size)))))
 
