@@ -16,7 +16,7 @@
 
 (describe "board-size"
   (it "displays prompt for board size"
-    (should= "Please select board-size:\n\t1. 3X3 board\n\t2.4X4 board" board-size)))
+    (should= "Please select board-size:\n\t1.\t3X3 board\n\t2.\t4X4 board" board-size)))
 
 (describe "invalid-board-size"
   (it "displays prompt for invalid board size"

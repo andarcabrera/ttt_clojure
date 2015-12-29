@@ -7,8 +7,8 @@
 (describe "player-name"
   (around [it]
     (with-redefs
-      [input/get-user-input #(str "Anda")
-      [output/prompt (fn [& _])]]
+      [ input/get-user-input #(str "Anda")
+        output/prompt (constantly nil)]
       (it)))
   (it "contains the player name"
     (should= "Anda" ((player) :name))))
@@ -16,8 +16,8 @@
 (describe "player-marker"
   (around [it]
     (with-redefs
-      [input/get-user-input (constantly "X")
-      [output/prompt (fn [& _])]]
+      [ input/get-user-input (constantly "X")
+        output/prompt (constantly nil)]
       (it)))
   (it "contains the player marker"
     (should= "X"
