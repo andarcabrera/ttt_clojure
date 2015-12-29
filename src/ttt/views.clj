@@ -10,4 +10,6 @@
 
 (def invalid-board-size "That is an invalid entry. Please select option 1 or 2.")
 
-(def player-prompt "Make your move, ")
+(def spot-selection "Make your move, ")
+
+(def invalid-spot "That is an invalid spot. Please select an available spot.")

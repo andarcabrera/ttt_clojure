@@ -22,9 +22,13 @@
   (it "displays prompt for invalid board size"
     (should= "That is an invalid entry. Please select option 1 or 2." invalid-board-size)))
 
-(describe "Move prompt"
+(describe "Spot selection"
   (it "prompts player to make a move "
-    (should= "Make your move, " player-prompt)))
+    (should= "Make your move, " spot-selection)))
+
+(describe "Invalid spot"
+  (it "displays prompt for invalid spot "
+    (should= "That is an invalid spot. Please select an available spot." invalid-spot)))
 
 
 

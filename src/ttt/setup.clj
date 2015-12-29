@@ -11,6 +11,7 @@
 (defn- invalid-board-size []
   (output/prompt views/invalid-board-size))
 
+
 (defn board-size []
   (loop [sizes (repeatedly get-board-size)]
     (let [size (first sizes)]

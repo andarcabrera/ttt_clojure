@@ -4,6 +4,9 @@
             [ttt.output :as output]
             [ttt.player :refer :all]))
 
+(defn- make-input [coll]
+  (apply str (interleave coll (repeat "\n"))))
+
 (describe "player-name"
   (around [it]
     (with-redefs
@@ -23,20 +26,22 @@
     (should= "X"
         ((create-player) :marker))))
 
-(describe "make-move"
+(describe "select-spot"
   (around [it]
     (with-out-str (it)))
 
   (it "asks for player spot choice"
+    (def board ["X" "Y" "X" 3 "X" 5 6 7 8 ])
     (should= 3
       (with-in-str "3"
-        (make-move)))))
+        (select-spot board)))))
 
-; (describe "make-move"
-;   (around [it]
-;     (with-out-str (it)))
+(describe "select-spot"
+  (around [it]
+    (with-out-str (it)))
 
-;   (it "asks for player spot choice"
-;     (should= 3
-;       (with-in-str (make-input '("nine" "1"))
-;         (board-size)))))
+  (it "asks for player spot choice repeatedly until they select valid spot"
+    (def board ["X" "Y" "X" "Y" "X" 5 6 7 8 ])
+    (should= 5
+      (with-in-str (make-input '("1" "5"))
+        (select-spot board)))))
