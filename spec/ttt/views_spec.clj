@@ -9,3 +9,15 @@
 (describe "player-name"
   (it "displays prompt for player name"
     (should= "Please enter player name:" player-name)))
+
+(describe "player-marker"
+  (it "displays prompt for player marker"
+    (should= "Please enter player marker:" player-marker)))
+
+(describe "board-size"
+  (it "displays prompt for board size"
+    (should= "Please select board-size:\n\t1. 3X3 board\n\t2.4X4 board" board-size)))
+
+(describe "invalid-board-size"
+  (it "displays prompt for invalid board size"
+    (should= "That is an invalid entry. Please select option 1 or 2." invalid-board-size)))

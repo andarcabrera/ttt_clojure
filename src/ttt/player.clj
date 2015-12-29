@@ -7,5 +7,11 @@
   (output/prompt views/player-name)
   (input/get-user-input))
 
-(def player {:name (get-player-name)})
+(defn- get-player-marker []
+  (output/prompt views/player-marker)
+  (input/get-user-input))
+
+(defn player []
+  {:name (get-player-name)
+   :marker (get-player-marker)})
 
