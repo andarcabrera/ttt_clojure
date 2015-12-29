@@ -11,7 +11,7 @@
   (output/prompt views/player-marker)
   (input/get-user-input))
 
-(defn player []
+(defn create-player []
   {:name (get-player-name)
    :marker (get-player-marker)})
 

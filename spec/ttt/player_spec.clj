@@ -11,7 +11,7 @@
         output/prompt (constantly nil)]
       (it)))
   (it "contains the player name"
-    (should= "Anda" ((player) :name))))
+    (should= "Anda" ((create-player) :name))))
 
 (describe "player-marker"
   (around [it]
@@ -21,4 +21,4 @@
       (it)))
   (it "contains the player marker"
     (should= "X"
-        ((player) :marker))))
+        ((create-player) :marker))))
