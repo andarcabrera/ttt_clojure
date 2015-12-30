@@ -13,3 +13,7 @@
 (def spot-selection "Make your move, ")
 
 (def invalid-spot "That is an invalid spot. Please select an available spot.")
+
+(def winning-message "Congratulations, you won, ")
+
+(def tie-message "Bummer, it's a tie.")

@@ -31,4 +31,13 @@
     (should= "That is an invalid spot. Please select an available spot." invalid-spot)))
 
 
+(describe "winning-message"
+  (it "displays winning message"
+    (should= "Congratulations, you won, " winning-message)))
+
+(describe "tie-message"
+  (it "displays a tie message"
+    (should= "Bummer, it's a tie." tie-message)))
+
+
 

@@ -4,13 +4,34 @@
             [ttt.output :as output]
             [ttt.views :as views]
             [ttt.setup :as setup]
+            [ttt.player :as player]
             ))
+
+(defn- marker [player]
+  (player :marker))
+
+(defn- spot [board]
+  (player/select-spot board))
+
+(defn- player-message [message player]
+  (str message (player :name)))
+
+(defn- play-game [board players]
+  (loop [board board players players]
+    (let [player (first players)]
+    (cond
+        (board/solved-board? board)
+        (output/prompt (player-message views/winning-message player))
+        (board/tied-board? board)
+        (output/prompt views/tie-message)
+    :else
+    (do (board/display-board board)
+          (recur (board/fill-spot board (spot board) (marker player)) (reverse players)))))))
 
 (defn -main []
   (output/prompt views/welcome-message)
   (let [players (setup/players) board (board/surface (setup/board-size))]
-    (board/display-board board)
-    (println players)))
+    (play-game board players)))
 
 
 
