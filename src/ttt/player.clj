@@ -21,7 +21,6 @@
         (recur (next selections)))))))
 
 (defn- spot-selection []
-  (output/prompt views/spot-selection)
   (input/get-user-input))
 
 (defn- invalid-spot []

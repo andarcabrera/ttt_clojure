@@ -21,11 +21,14 @@
     (let [player (first players)]
     (cond
         (board/solved-board? board)
-        (output/prompt (player-message views/winning-message player))
+        (do (board/display-board board)
+            (output/prompt (player-message views/winning-message (second players))))
         (board/tied-board? board)
-        (output/prompt views/tie-message)
+        (do (board/display-board board)
+            (output/prompt views/tie-message))
     :else
     (do (board/display-board board)
+        (output/prompt (player-message views/spot-selection player))
           (recur (board/fill-spot board (spot board) (marker player)) (reverse players)))))))
 
 (defn -main []
