@@ -12,6 +12,14 @@
   (output/prompt views/player-marker)
   (input/get-user-input))
 
+(defn- validate-input [input]
+  (loop [selections (repeatedly input)]
+    (let [selection (first selections)]
+      (if (not= "" selection)
+        selection
+      (do (output/prompt views/no-input)
+        (recur (next selections)))))))
+
 (defn- spot-selection []
   (output/prompt views/spot-selection)
   (input/get-user-input))
@@ -20,8 +28,8 @@
   (output/prompt views/invalid-spot))
 
 (defn create-player []
-  {:name (get-player-name)
-   :marker (get-player-marker)})
+  {:name (validate-input get-player-name)
+   :marker (validate-input get-player-marker)})
 
 (defn select-spot [board]
   (loop [selections (repeatedly spot-selection)]

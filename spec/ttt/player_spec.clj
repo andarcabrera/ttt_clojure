@@ -16,6 +16,15 @@
   (it "contains the player name"
     (should= "Anda" ((create-player) :name))))
 
+(describe "player-name"
+  (around [it]
+    (with-out-str (it)))
+
+  (it "if no input it requests input until something is entered"
+    (should= "Anda"
+      (with-in-str (make-input '("" "" "Anda"))
+        ((create-player) :name)))))
+
 (describe "player-marker"
   (around [it]
     (with-redefs

@@ -39,5 +39,13 @@
   (it "displays a tie message"
     (should= "Bummer, it's a tie." tie-message)))
 
+(describe "invalid-marker"
+  (it "displays an invalid marker message"
+    (should= "That is not a valid marker. Please select a marker." invalid-marker)))
+
+(describe "no-input"
+  (it "displays a blank input message"
+    (should= "You have not entered anything. Please enter the required info." no-input)))
+
 
 

@@ -36,5 +36,14 @@
       (with-in-str (make-input '("Anda" "X" "Eli" "Y"))
         (players)))))
 
+; (describe "players"
+;   (around [it]
+;     (with-out-str (it)))
+
+  ; (it "prompts the user to enter the player information until valid"
+  ;   (should= [{:name "Anda", :marker "X"} {:name "Eli", :marker "Y"}]
+  ;     (with-in-str (make-input '("Anda" "X" "Eli" "X" "Y"))
+  ;       (players)))))
+
 
 
