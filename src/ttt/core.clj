@@ -20,15 +20,15 @@
   (loop [board board players players]
     (let [player (first players)]
     (cond
-        (board/solved-board? board)
+      (board/solved-board? board)
         (do (board/display-board board)
             (output/prompt (player-message views/winning-message (second players))))
-        (board/tied-board? board)
+      (board/tied-board? board)
         (do (board/display-board board)
             (output/prompt views/tie-message))
-    :else
-    (do (board/display-board board)
-        (output/prompt (player-message views/spot-selection player))
+      :else
+      (do (board/display-board board)
+          (output/prompt (player-message views/spot-selection player))
           (recur (board/fill-spot board (spot board) (marker player)) (reverse players)))))))
 
 (defn -main []

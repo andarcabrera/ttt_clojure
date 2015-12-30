@@ -60,12 +60,19 @@
    board))
 
 (defn tied-board? [board]
-  (println (solved-board? board))
   (and (not-any? true? (map = board (range 9))) (= false (solved-board? board))))
 
 (defn display-board [board]
   (doseq [row (partitioned-board board)]
   (output/prompt row)))
+
+(defn display-board [board]
+  (doseq [row (partitioned-board board)]
+    (output/prompt row)))
+
+ ; (defn display-board [board]
+ ;  (doseq [row (partitioned-board board)]
+ ;  (output/prompt (apply str (take (* 2 (count board)) (interleave (repeat "_") row (repeat "_")))))))
 
 
 
