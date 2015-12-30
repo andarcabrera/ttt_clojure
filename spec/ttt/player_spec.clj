@@ -54,3 +54,13 @@
     (should= 5
       (with-in-str (make-input '("1" "5"))
         (select-spot board)))))
+
+(describe "select-spot"
+  (around [it]
+    (with-out-str (it)))
+
+  (it "gives an invalid input error if spot no selection is made"
+    (def board ["X" "Y" "X" "Y" "X" 5 6 7 8 ])
+    (should= 5
+      (with-in-str (make-input '("" "" "5"))
+        (select-spot board)))))

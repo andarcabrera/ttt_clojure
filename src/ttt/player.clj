@@ -27,15 +27,18 @@
 (defn- invalid-spot []
   (output/prompt views/invalid-spot))
 
+(defn valid-spots [board]
+  (set (map #(str %) (range (count board)))))
+
 (defn create-player []
   {:name (validate-input get-player-name)
    :marker (validate-input get-player-marker)})
 
 (defn select-spot [board]
   (loop [selections (repeatedly spot-selection)]
-    (let [selection (Integer/parseInt (first selections))]
-      (if (board/available-spot? board selection)
-        selection
+    (let [selection (first selections)]
+      (if (and (contains? (valid-spots board) selection) (board/available-spot? board (Integer/parseInt selection)))
+        (Integer/parseInt selection)
       (do (invalid-spot)
         (recur (next selections)))))))
 
