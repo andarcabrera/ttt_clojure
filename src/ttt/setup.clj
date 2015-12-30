@@ -22,11 +22,22 @@
       (do (invalid-board-size)
         (recur (next sizes)))))))
 
-(defn players []
+(defn- players []
   (loop [players-array []]
     (if (= 2 (count players-array))
       players-array
       (recur (conj players-array (player/create-player))))))
+
+(defn validate-players []
+  (loop [players (players)]
+    (let [player1 (first players) player2 (last players)]
+    (if (not= (player1 :marker) (player2 :marker))
+      players
+      (do (output/prompt views/duplicate-marker)
+      (recur [player1 (assoc player2 :marker (player/validate-input player/get-player-marker))]))))))
+
+
+
 
 
 

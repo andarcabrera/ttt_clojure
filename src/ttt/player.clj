@@ -8,11 +8,11 @@
   (output/prompt views/player-name)
   (input/get-user-input))
 
-(defn- get-player-marker []
+(defn get-player-marker []
   (output/prompt views/player-marker)
   (input/get-user-input))
 
-(defn- validate-input [input]
+(defn validate-input [input]
   (loop [selections (repeatedly input)]
     (let [selection (first selections)]
       (if (not= "" selection)

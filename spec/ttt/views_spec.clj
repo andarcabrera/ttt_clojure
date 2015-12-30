@@ -39,9 +39,9 @@
   (it "displays a tie message"
     (should= "Bummer, it's a tie." tie-message)))
 
-(describe "invalid-marker"
-  (it "displays an invalid marker message"
-    (should= "That is not a valid marker. Please select a marker." invalid-marker)))
+(describe "duplicate-marker"
+  (it "displays an duplicate marker message"
+    (should= "The marker cannot be the same as the other player's. Please select a valid marker." duplicate-marker)))
 
 (describe "no-input"
   (it "displays a blank input message"

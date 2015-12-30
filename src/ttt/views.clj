@@ -18,6 +18,6 @@
 
 (def tie-message "Bummer, it's a tie.")
 
-(def invalid-marker "That is not a valid marker. Please select a marker.")
+(def duplicate-marker "The marker cannot be the same as the other player's. Please select a valid marker.")
 
 (def no-input "You have not entered anything. Please enter the required info.")
