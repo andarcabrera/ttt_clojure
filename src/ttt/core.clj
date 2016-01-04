@@ -33,7 +33,7 @@
 
 (defn -main []
   (output/prompt views/welcome-message)
-  (let [players (setup/validate-players) board (board/surface (setup/board-size))]
+  (let [players (setup/ordered-players) board (board/surface (setup/board-size))]
     (play-game board players)))
 
 

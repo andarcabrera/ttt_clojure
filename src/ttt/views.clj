@@ -25,3 +25,7 @@
 (def game-type "What kind of TTT would you like to play?\n\t1.\tHuman vs. Human\n\t2.\tHuman vs. Computer\n\t3.\tComputer vs. Computer")
 
 (def invalid-game-type "That is an invalid entry. Please select option 1, 2 or 3.")
+
+(def starting-player "Would you like to start with this player? (Y/N)")
+
+(def invalid-starting-player "That is an invalid entry. Please enter Y for yes or N for no")

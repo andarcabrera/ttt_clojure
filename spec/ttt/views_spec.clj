@@ -55,5 +55,13 @@
   (it "displays prompt for invalid game type selection"
     (should= "That is an invalid entry. Please select option 1, 2 or 3." invalid-game-type)))
 
+(describe "starting player"
+  (it "confirms the starting player"
+    (should= "Would you like to start with this player? (Y/N)" starting-player)))
+
+(describe "invalid-starting-player"
+  (it "displays prompt for invalid starting-player selection"
+    (should= "That is an invalid entry. Please enter Y for yes or N for no" invalid-starting-player)))
+
 
 

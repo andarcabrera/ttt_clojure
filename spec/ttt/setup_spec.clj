@@ -27,32 +27,69 @@
         (board-size)))))
 
 
-(describe "validate-players"
+(describe "ordered-players"
   (around [it]
     (with-out-str (it)))
 
   (it "prompts the user to enter the player information"
     (should= [{:type "human" :name "Anda", :marker "X"} {:type "human" :name "Eli", :marker "Y"}]
-      (with-in-str (make-input '("1" "Anda" "X" "Eli" "Y"))
-        (validate-players)))))
+      (with-in-str (make-input '("1" "Anda" "X" "Eli" "Y" "Y"))
+        (ordered-players)))))
 
-(describe "validate-players"
+(describe "ordered-players"
   (around [it]
     (with-out-str (it)))
 
   (it "prompts the user to enter the player information until valid"
     (should= [{:type "human" :name "Anda", :marker "X"} {:type "human" :name "Eli", :marker "Y"}]
-      (with-in-str (make-input '("1" "Anda" "X" "Eli" "X" "Y"))
-        (validate-players)))))
+      (with-in-str (make-input '("1" "Anda" "X" "Eli" "X" "Y" "Y"))
+        (ordered-players)))))
 
-(describe "validate-players"
+(describe "ordered-players"
   (around [it]
     (with-out-str (it)))
 
   (it "creates one computer and one human player"
     (should= [{:type "human" :name "Anda", :marker "X"} {:type "computer" :name "computer", :marker "Y"}]
-      (with-in-str (make-input '("2" "Anda" "X" "Y"))
-        (validate-players)))))
+      (with-in-str (make-input '("2" "Anda" "X" "Y" "Y"))
+        (ordered-players)))))
+
+(describe "ordered-players"
+  (around [it]
+    (with-out-str (it)))
+
+  (it "creates two computer players"
+    (should= [{:type "computer" :name "computer", :marker "X"} {:type "computer" :name "computer", :marker "Y"}]
+      (with-in-str (make-input '("0" "3" "X" "Y" "Y"))
+        (ordered-players)))))
+
+(describe "ordered-players"
+  (around [it]
+    (with-out-str (it)))
+
+  (it "reverses the player array if user chooses to start with the second inputed player"
+    (should= [{:type "human" :name "Eli", :marker "Y"} {:type "human" :name "Anda", :marker "X"}]
+      (with-in-str (make-input '("0" "1" "Anda" "X" "Eli" "Y" "N"))
+        (ordered-players)))))
+
+(describe "ordered-players"
+  (around [it]
+    (with-out-str (it)))
+
+  (it "keeps the player array as is if user chooses to play in default order"
+    (should= [{:type "human" :name "Eli", :marker "Y"} {:type "human" :name "Anda", :marker "X"}]
+      (with-in-str (make-input '("0" "1" "Eli" "Y" "Anda" "X" "Y"))
+        (ordered-players)))))
+
+
+(describe "ordered-players"
+  (around [it]
+    (with-out-str (it)))
+
+  (it "asks for player order until valid response is received"
+    (should= [{:type "human" :name "Eli", :marker "Y"} {:type "human" :name "Anda", :marker "X"}]
+      (with-in-str (make-input '("0" "1" "Eli" "Y" "Anda" "X" "g" "l" "Y"))
+        (ordered-players)))))
 
 (describe "game-type"
   (around [it]
