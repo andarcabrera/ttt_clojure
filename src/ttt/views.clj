@@ -22,4 +22,6 @@
 
 (def no-input "You have not entered anything. Please enter the required info.")
 
-(def game-type "What kind of TTT would you like to play?:\n\t1.\tHuman vs. Human\n\t2.\tHuman vs. Computer\n\t3. Computer vs. Computer")
+(def game-type "What kind of TTT would you like to play?\n\t1.\tHuman vs. Human\n\t2.\tHuman vs. Computer\n\t3.\tComputer vs. Computer")
+
+(def invalid-game-type "That is an invalid entry. Please select option 1, 2 or 3.")

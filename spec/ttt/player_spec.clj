@@ -14,7 +14,7 @@
         output/prompt (constantly nil)]
       (it)))
   (it "contains the player name"
-    (should= "Anda" ((create-player) :name))))
+    (should= "Anda" ((create-human-player) :name))))
 
 (describe "player-name"
   (around [it]
@@ -23,7 +23,7 @@
   (it "if no input it requests input until something is entered"
     (should= "Anda"
       (with-in-str (make-input '("" "" "Anda"))
-        ((create-player) :name)))))
+        ((create-human-player) :name)))))
 
 (describe "player-marker"
   (around [it]
@@ -33,7 +33,17 @@
       (it)))
   (it "contains the player marker"
     (should= "X"
-        ((create-player) :marker))))
+        ((create-human-player) :marker))))
+
+(describe "player-marker"
+  (around [it]
+    (with-redefs
+      [ input/get-user-input (constantly "X")
+        output/prompt (constantly nil)]
+      (it)))
+  (it "should be of type human"
+    (should= "human"
+        ((create-human-player) :type))))
 
 (describe "select-spot"
   (around [it]
@@ -64,3 +74,21 @@
     (should= 5
       (with-in-str (make-input '("" "" "5"))
         (select-spot board)))))
+
+(describe "computer-player"
+  (around [it]
+    (with-redefs
+      [ input/get-user-input (constantly "Y")
+        output/prompt (constantly nil)]
+      (it)))
+  (it "is of type computer"
+    (should= "computer"
+        ((create-computer-player) :type)))
+
+  (it "has the generic name computer"
+    (should= "computer"
+        ((create-computer-player) :name)))
+
+  (it "it has a Y marker"
+    (should= "Y"
+        ((create-computer-player) :marker))))

@@ -8,9 +8,15 @@
   (output/prompt views/board-size)
   (input/get-user-input))
 
+(defn- get-game-type []
+  (output/prompt views/game-type)
+  (input/get-user-input))
+
 (defn- invalid-board-size []
   (output/prompt views/invalid-board-size))
 
+(defn- invalid-game-type []
+  (output/prompt views/invalid-game-type))
 
 (defn board-size []
   (loop [sizes (repeatedly get-board-size)]
@@ -22,11 +28,30 @@
       (do (invalid-board-size)
         (recur (next sizes)))))))
 
+(defn game-type []
+  (loop [types (repeatedly get-game-type)]
+    (let [type (first types)]
+      (cond
+        (= "1" type) 1
+        (= "2" type) 2
+        (= "3" type) 3
+        :else
+      (do (invalid-game-type)
+        (recur (next types)))))))
+
+(defn- create-human-players []
+  [(player/create-human-player) (player/create-human-player)])
+
+(defn- create-human-computer-players []
+  [(player/create-human-player) (player/create-computer-player)])
+
 (defn- players []
-  (loop [players-array []]
-    (if (= 2 (count players-array))
-      players-array
-      (recur (conj players-array (player/create-player))))))
+  (let [game-type (game-type)]
+    (cond
+      (= 1 game-type)
+        (create-human-players)
+      (= 2 game-type)
+        (create-human-computer-players))))
 
 (defn validate-players []
   (loop [players (players)]

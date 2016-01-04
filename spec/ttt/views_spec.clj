@@ -49,7 +49,11 @@
 
 (describe "board-size"
   (it "displays prompt for game type"
-    (should= "What kind of TTT would you like to play?:\n\t1.\tHuman vs. Human\n\t2.\tHuman vs. Computer\n\t3. Computer vs. Computer" game-type)))
+    (should= "What kind of TTT would you like to play?\n\t1.\tHuman vs. Human\n\t2.\tHuman vs. Computer\n\t3.\tComputer vs. Computer" game-type)))
+
+(describe "invalid-game-type"
+  (it "displays prompt for invalid game type selection"
+    (should= "That is an invalid entry. Please select option 1, 2 or 3." invalid-game-type)))
 
 
 

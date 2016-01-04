@@ -29,9 +29,15 @@
 (defn valid-spots [board]
   (set (map #(str %) (range (count board)))))
 
-(defn create-player []
-  {:name (validate-input get-player-name)
-   :marker (validate-input get-player-marker)})
+(defn create-human-player []
+  { :type "human"
+    :name (validate-input get-player-name)
+    :marker (validate-input get-player-marker)})
+
+(defn create-computer-player []
+  { :type "computer"
+    :name "computer"
+    :marker (validate-input get-player-marker)})
 
 (defn select-spot [board]
   (loop [selections (repeatedly spot-selection)]
