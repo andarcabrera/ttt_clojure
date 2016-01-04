@@ -21,3 +21,5 @@
 (def duplicate-marker "The marker cannot be the same as the other player's. Please select a valid marker.")
 
 (def no-input "You have not entered anything. Please enter the required info.")
+
+(def game-type "What kind of TTT would you like to play?:\n\t1.\tHuman vs. Human\n\t2.\tHuman vs. Computer\n\t3. Computer vs. Computer")

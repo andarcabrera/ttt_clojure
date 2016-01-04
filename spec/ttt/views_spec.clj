@@ -47,5 +47,9 @@
   (it "displays a blank input message"
     (should= "You have not entered anything. Please enter the required info." no-input)))
 
+(describe "board-size"
+  (it "displays prompt for game type"
+    (should= "What kind of TTT would you like to play?:\n\t1.\tHuman vs. Human\n\t2.\tHuman vs. Computer\n\t3. Computer vs. Computer" game-type)))
+
 
 
