@@ -50,30 +50,39 @@
     (with-out-str (it)))
 
   (it "asks for player spot choice"
-    (def board ["X" "Y" "X" 3 "X" 5 6 7 8 ])
+    (def info {:board ["X" "Y" "X" 3 "X" 5 6 7 8 ] :markers ["X" "Y"] :type "human"})
     (should= 3
       (with-in-str "3"
-        (select-spot board)))))
+        (select-spot info)))))
 
 (describe "select-spot"
   (around [it]
     (with-out-str (it)))
 
   (it "asks for player spot choice repeatedly until they select valid spot"
-    (def board ["X" "Y" "X" "Y" "X" 5 6 7 8 ])
+    (def info {:board ["X" "Y" "X" "Y" "X" 5 6 7 8 ] :markers ["X" "Y"] :type "human"})
     (should= 5
       (with-in-str (make-input '("1" "5"))
-        (select-spot board)))))
+        (select-spot info)))))
 
 (describe "select-spot"
   (around [it]
     (with-out-str (it)))
 
   (it "gives an invalid input error if spot no selection is made"
-    (def board ["X" "Y" "X" "Y" "X" 5 6 7 8 ])
+    (def info {:board ["X" "Y" "X" "Y" "X" 5 6 7 8 ] :markers ["X" "Y"] :type "human"})
     (should= 5
       (with-in-str (make-input '("" "" "5"))
-        (select-spot board)))))
+        (select-spot info)))))
+
+(describe "select-spot"
+  (around [it]
+    (with-out-str (it)))
+
+  (it "computer selects spot 4 if all spots available"
+    (def info {:board [0 1 2 3 4 5 6 7 8 ] :markers ["X" "Y"] :type "computer"})
+    (should= 4
+        (select-spot info))))
 
 (describe "computer-player"
   (around [it]

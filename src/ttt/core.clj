@@ -10,15 +10,15 @@
 (defn- marker [player]
   (player :marker))
 
-(defn- spot [board]
-  (player/select-spot board))
+(defn- spot [board markers type]
+  (player/select-spot {:board board :markers markers :type type}))
 
 (defn- player-message [message player]
   (str message (player :name)))
 
 (defn- play-game [board players]
   (loop [board board players players]
-    (let [player (first players)]
+    (let [player (first players) markers (map #(% :marker) players) type (player :type)]
     (cond
       (board/solved-board? board)
         (do (board/display-board board)
@@ -29,7 +29,7 @@
       :else
       (do (board/display-board board)
           (output/prompt (player-message views/spot-selection player))
-          (recur (board/fill-spot board (spot board) (marker player)) (reverse players)))))))
+          (recur (board/fill-spot board (spot board markers type) (marker player)) (reverse players)))))))
 
 (defn -main []
   (output/prompt views/welcome-message)

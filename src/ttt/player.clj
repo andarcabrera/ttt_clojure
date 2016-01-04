@@ -39,13 +39,20 @@
     :name "computer"
     :marker (validate-input get-player-marker)})
 
-(defn select-spot [board]
+(defmulti select-spot :type)
+
+(defmethod select-spot "human" [info]
   (loop [selections (repeatedly spot-selection)]
-    (let [selection (first selections)]
+    (let [selection (first selections) board (info :board)]
       (if (and (contains? (valid-spots board) selection) (board/available-spot? board (Integer/parseInt selection)))
         (Integer/parseInt selection)
       (do (invalid-spot)
         (recur (next selections)))))))
+
+(defmethod select-spot "computer" [info]
+  4)
+
+
 
 
 
