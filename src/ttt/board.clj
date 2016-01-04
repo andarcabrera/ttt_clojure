@@ -70,9 +70,7 @@
   (doseq [row (partitioned-board board)]
     (output/prompt row)))
 
- ; (defn display-board [board]
- ;  (doseq [row (partitioned-board board)]
- ;  (output/prompt (apply str (take (* 2 (count board)) (interleave (repeat "_") row (repeat "_")))))))
+
 
 
 
