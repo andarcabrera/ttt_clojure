@@ -7,18 +7,16 @@
             [ttt.player :as player]
             ))
 
-(defn- marker [player]
-  (player :marker))
 
-(defn- spot [board markers type]
-  (player/select-spot {:board board :markers markers :type type}))
+(defn- spot [board markers player-marker type]
+  (player/select-spot {:board board :markers markers :player-marker player-marker :type type}))
 
 (defn- player-message [message player]
   (str message (player :name)))
 
-(defn- play-game [board players]
-  (loop [board board players players]
-    (let [player (first players) markers (map #(% :marker) players) type (player :type)]
+(defn- play-game [board original-players]
+  (loop [board board players original-players original-markers (map #(% :marker) original-players)]
+    (let [player (first players) marker (player :marker) type (player :type)]
     (cond
       (board/solved-board? board)
         (do (board/display-board board)
@@ -27,9 +25,9 @@
         (do (board/display-board board)
             (output/prompt views/tie-message))
       :else
-      (do (board/display-board board)
-          (output/prompt (player-message views/spot-selection player))
-          (recur (board/fill-spot board (spot board markers type) (marker player)) (reverse players)))))))
+        (do (board/display-board board)
+            (output/prompt (player-message views/spot-selection player))
+            (recur (board/fill-spot board (spot board original-markers marker type) marker) (reverse players) original-markers))))))
 
 (defn -main []
   (output/prompt views/welcome-message)

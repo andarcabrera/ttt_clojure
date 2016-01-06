@@ -99,5 +99,31 @@
     (def board ["X" "X" "Y" "X" "Y" "Y" "Y" "X" "Y" ])
     (should= false (tied-board? board))))
 
+(describe "next-marker"
+  (it "returns the next marker of the board"
+    (def board [0 1 2 3 4 5 6 7 "X" ])
+    (def markers ["X" "Y"])
+    (should= "Y" (next-marker board markers))))
+
+(describe "reset-board"
+  (it "resets a spot on the board"
+    (def board [0 1 2 3 4 5 6 7 "X" ])
+    (def reseted-board (reset-board board 8))
+    (should= reseted-board  [0 1 2 3 4 5 6 7 8])))
+
+(describe "winning-marker"
+  (it "returns the winning-marker"
+    (def board ["X" "X" "X" "Y" "Y" 5 6 7 8])
+    (def markers ["X" "Y"])
+    (should= "X" (winning-marker board markers))))
+
+(describe "winning-marker"
+  (it "returns the winning-marker"
+    (def board ["Y" "X" "Y" 3 "X" 5 6 "X" 8 ])
+    (def markers ["X" "Y"])
+    (should= "X" (winning-marker board markers))))
+
+
+
 
 

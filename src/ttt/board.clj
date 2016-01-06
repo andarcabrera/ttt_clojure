@@ -70,6 +70,20 @@
   (doseq [row (partitioned-board board)]
     (output/prompt row)))
 
+(defn next-marker [board markers]
+  (if (even? (count (all-available-spots board)))
+    (last markers)
+    (first markers)))
+
+(defn reset-board [board spot]
+  (assoc board spot spot))
+
+(defn winning-marker [board markers]
+  (if
+   (and (solved-board? board) (even? (count (all-available-spots board))))
+    (first markers)
+    (last markers)))
+
 
 
 

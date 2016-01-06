@@ -60,7 +60,7 @@
     (with-out-str (it)))
 
   (it "asks for player spot choice repeatedly until they select valid spot"
-    (def info {:board ["X" "Y" "X" "Y" "X" 5 6 7 8 ] :markers ["X" "Y"] :type "human"})
+    (def info {:board ["X" "Y" "X" "Y" "X" 5 6 7 8 ] :markers ["X" "Y"] :player-marker "X" :type "human"})
     (should= 5
       (with-in-str (make-input '("1" "5"))
         (select-spot info)))))
@@ -70,18 +70,45 @@
     (with-out-str (it)))
 
   (it "gives an invalid input error if spot no selection is made"
-    (def info {:board ["X" "Y" "X" "Y" "X" 5 6 7 8 ] :markers ["X" "Y"] :type "human"})
+    (def info {:board ["X" "Y" "X" "Y" "X" 5 6 7 8 ] :markers ["X" "Y"] :player-marker "X" :type "human"})
     (should= 5
       (with-in-str (make-input '("" "" "5"))
         (select-spot info)))))
 
-(describe "select-spot"
+(describe "select-spot-computer"
   (around [it]
     (with-out-str (it)))
 
   (it "computer selects spot 4 if all spots available"
-    (def info {:board [0 1 2 3 4 5 6 7 8 ] :markers ["X" "Y"] :type "computer"})
+    (def info {:board [0 1 2 3 4 5 6 7 8 ] :markers ["X" "Y"] :player-marker "X" :type "computer"})
     (should= 4
+        (select-spot info))))
+
+(describe "select-spot-computer"
+  (around [it]
+    (with-out-str (it)))
+
+  (it "computer does not select spot 4 by default if game already started"
+    (def info {:board ["X" 1 2 3 4 5 6 7 8 ] :markers ["X" "Y"] :player-marker "X" :type "computer"})
+    (should-not= 4
+        (select-spot info))))
+
+(describe "select-spot-computer"
+  (around [it]
+    (with-out-str (it)))
+
+  (it "selects winning spot if available"
+    (def info {:board ["X" 1 "X" 3 "X" 5 "Y" "Y" 8 ] :markers ["X" "Y"] :player-marker "Y" :type "computer"})
+    (should= 8
+        (select-spot info))))
+
+(describe "select-spot-computer"
+  (around [it]
+    (with-out-str (it)))
+
+  (it "prevents opponent from winning"
+    (def info {:board ["X" "X" 2 3 "Y" 5 6 7 8 ] :markers ["X" "Y"] :player-marker "Y" :type "computer"})
+    (should= 2
         (select-spot info))))
 
 (describe "computer-player"
