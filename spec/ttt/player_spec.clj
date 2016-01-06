@@ -88,15 +88,6 @@
   (around [it]
     (with-out-str (it)))
 
-  (it "computer does not select spot 4 by default if game already started"
-    (def info {:board ["X" 1 2 3 4 5 6 7 8 ] :markers ["X" "Y"] :player-marker "X" :type "computer"})
-    (should-not= 4
-        (select-spot info))))
-
-(describe "select-spot-computer"
-  (around [it]
-    (with-out-str (it)))
-
   (it "selects winning spot if available"
     (def info {:board ["X" 1 "X" 3 "X" 5 "Y" "Y" 8 ] :markers ["X" "Y"] :player-marker "Y" :type "computer"})
     (should= 8

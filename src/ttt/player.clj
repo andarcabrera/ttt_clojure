@@ -2,15 +2,21 @@
   (:require [ttt.input :as input]
             [ttt.output :as output]
             [ttt.views :as views]
-            [ttt.board :as board]))
+            [ttt.board :as board]
+            [taoensso.timbre :as timbre
+            :refer (log  trace  debug  info  warn  error  fatal  report
+              logf tracef debugf infof warnf errorf fatalf reportf
+              spy get-env log-env)]
+            [taoensso.timbre.profiling :as profiling
+            :refer (pspy pspy* profile defnp p p*)]))
 
 (defn- get-player-name []
   (output/prompt views/player-name)
   (input/get-user-input))
 
 (defn get-player-marker []
-  (output/prompt views/player-marker)
-  (input/get-user-input))
+    (output/prompt views/player-marker)
+    (input/get-user-input))
 
 (defn validate-input [input]
   (loop [selections (repeatedly input)]
@@ -72,9 +78,9 @@
       (do
         (let [board board markers markers player-marker player-marker]
            (if (not= (board/next-marker board markers) player-marker)
-              (apply min (pmap #(minimax % markers player-marker)
+              (apply min (map #(minimax % markers player-marker)
                         (possible-moves board markers)))
-              (apply max (pmap #(minimax % markers player-marker)
+              (apply max (map #(minimax % markers player-marker)
                         (possible-moves board markers)))))))))
 
 (defn- moves-scores [board markers player-marker]
@@ -83,14 +89,17 @@
                (map #(minimax % markers player-marker) (possible-moves board markers)))))
 
 (defn- best-move [board markers player-marker]
-  ; (println (moves-scores board markers player-marker))
   (key (apply max-key val (into {} (moves-scores board markers player-marker)))))
 
-(defmethod select-spot "computer" [info]
+(profile :info :Arithmetic (defmethod select-spot "computer" [info]
   (let [board (info :board) markers (info :markers) player-marker (info :player-marker)]
-    (if (= (count board) (count (board/all-available-spots board)))
-      4
-      (best-move board markers player-marker))))
+    (cond
+      (<= 13 (count (board/all-available-spots board)))
+        (rand-nth (board/all-available-spots board))
+      (= (count board) (count (board/all-available-spots board)))
+        4
+      :else
+      (p :bestmove (best-move board markers player-marker))))))
 
 
 

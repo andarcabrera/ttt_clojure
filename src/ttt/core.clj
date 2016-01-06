@@ -12,7 +12,15 @@
   (player/select-spot {:board board :markers markers :player-marker player-marker :type type}))
 
 (defn- player-message [message player]
-  (str message (player :name)))
+  (str message (clojure.string/capitalize (player :name))))
+
+(defmulti prompt-message :type)
+
+(defmethod prompt-message "human" [player]
+  (output/prompt (player-message views/spot-selection player)))
+
+(defmethod prompt-message "computer" [player]
+  (output/prompt views/computer-move))
 
 (defn- play-game [board original-players]
   (loop [board board players original-players original-markers (map #(% :marker) original-players)]
@@ -26,7 +34,7 @@
             (output/prompt views/tie-message))
       :else
         (do (board/display-board board)
-            (output/prompt (player-message views/spot-selection player))
+            (prompt-message player)
             (recur (board/fill-spot board (spot board original-markers marker type) marker) (reverse players) original-markers))))))
 
 (defn -main []

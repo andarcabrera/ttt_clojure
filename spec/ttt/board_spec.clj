@@ -76,11 +76,7 @@
 (describe "fill-spot"
   (it "updates the spot with the given marker if spot is available"
     (def board ["X" 1 "Y" 3 "Y" 5 "Y" "X" "X" ])
-    (should= ["X" "X" "Y" 3 "Y" 5 "Y" "X" "X" ] (fill-spot board 1 "X")))
-
-  (it "does not update the spot with the given marker if spot is not available"
-    (def board ["X" 1 "Y" 3 "Y" 5 "Y" "X" "X" ])
-    (should= ["X" 1 "Y" 3 "Y" 5 "Y" "X" "X" ] (fill-spot board 4 "X"))) )
+    (should= ["X" "X" "Y" 3 "Y" 5 "Y" "X" "X" ] (fill-spot board 1 "X"))))
 
 (describe "tied-board"
   (it "returns true if the board is tied"
@@ -100,8 +96,14 @@
     (should= false (tied-board? board))))
 
 (describe "next-marker"
-  (it "returns the next marker of the board"
+  (it "returns the next marker of the board for a 3X3 board"
     (def board [0 1 2 3 4 5 6 7 "X" ])
+    (def markers ["X" "Y"])
+    (should= "Y" (next-marker board markers))))
+
+(describe "next-marker"
+  (it "returns the next marker of the board for a 4X4 board"
+    (def board ["X" 1 2 3 4 "X" 6 7 8 9 "X" 11 "Y" 13 14 "Y"])
     (def markers ["X" "Y"])
     (should= "Y" (next-marker board markers))))
 
@@ -118,8 +120,14 @@
     (should= "X" (winning-marker board markers))))
 
 (describe "winning-marker"
-  (it "returns the winning-marker"
+  (it "returns the winning-marker for a 3x3 board"
     (def board ["Y" "X" "Y" 3 "X" 5 6 "X" 8 ])
+    (def markers ["X" "Y"])
+    (should= "X" (winning-marker board markers))))
+
+(describe "winning-marker"
+  (it "returns the winning-marker for a 4x4 board"
+    (def board ["X" "X" "X" "X" 4 "Y" 6 7 8 9 "X" 11 "Y" 13 14 "Y"])
     (def markers ["X" "Y"])
     (should= "X" (winning-marker board markers))))
 

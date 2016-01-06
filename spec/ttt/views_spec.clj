@@ -57,11 +57,15 @@
 
 (describe "starting player"
   (it "confirms the starting player"
-    (should= "Would you like to start with this player? (Y/N)" starting-player)))
+    (should= "Would you like to start with the below player? (y/n)\n" starting-player)))
 
 (describe "invalid-starting-player"
   (it "displays prompt for invalid starting-player selection"
     (should= "That is an invalid entry. Please enter Y for yes or N for no" invalid-starting-player)))
+
+(describe "computer-move"
+  (it "displays message about computer moving"
+    (should= "The computer is thinking..." computer-move)))
 
 
 

@@ -13,7 +13,7 @@
   (input/get-user-input))
 
 (defn- get-players-order [original-players]
-  (output/prompt (str views/starting-player ((first original-players) :name)))
+  (output/prompt (str views/starting-player (clojure.string/capitalize ((first original-players) :name))))
   (input/get-user-input))
 
 (defn- invalid-board-size []
@@ -50,8 +50,8 @@
   (loop [players validated-players]
     (let [input (get-players-order players)]
       (cond
-        (= "Y" input) "Y"
-        (= "N" input) "N"
+        (or (= "y" input) (= "Y" input)) "Y"
+        (or (= "n" input) (= "N" input)) "N"
         :else
       (do (invalid-player-order)
         (recur players))))))

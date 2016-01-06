@@ -26,6 +26,8 @@
 
 (def invalid-game-type "That is an invalid entry. Please select option 1, 2 or 3.")
 
-(def starting-player "Would you like to start with this player? (Y/N)")
+(def starting-player "Would you like to start with the below player? (y/n)\n")
 
 (def invalid-starting-player "That is an invalid entry. Please enter Y for yes or N for no")
+
+(def computer-move "The computer is thinking...")

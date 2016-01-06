@@ -52,12 +52,11 @@
   (= (board position) position))
 
 (defn all-available-spots [board]
-  (filter #(available-spot? board %) (range 9)))
+  (let [size (count board)]
+  (filter #(available-spot? board %) (range size))))
 
 (defn fill-spot [board position marker]
-  (if (available-spot? board position)
-   (assoc board position marker)
-   board))
+  (assoc board position marker))
 
 (defn tied-board? [board]
   (and (not-any? true? (map = board (range 9))) (= false (solved-board? board))))
@@ -71,18 +70,29 @@
     (output/prompt row)))
 
 (defn next-marker [board markers]
-  (if (even? (count (all-available-spots board)))
-    (last markers)
-    (first markers)))
+  (cond
+    (and (even? (count (all-available-spots board))) (= 9 (count board)))
+      (last markers)
+    (and (odd? (count (all-available-spots board))) (= 9 (count board)))
+      (first markers)
+    (and (odd? (count (all-available-spots board))) (= 16 (count board)))
+      (last markers)
+    (and (odd? (count (all-available-spots board))) (= 16 (count board)))
+      (first markers)))
 
 (defn reset-board [board spot]
   (assoc board spot spot))
 
 (defn winning-marker [board markers]
-  (if
-   (and (solved-board? board) (even? (count (all-available-spots board))))
-    (first markers)
-    (last markers)))
+  (cond
+    (and (= 9 (count board)) (and (solved-board? board) (even? (count (all-available-spots board)))))
+      (first markers)
+    (and (= 9 (count board)) (and (solved-board? board) (odd? (count (all-available-spots board)))))
+      (last markers)
+    (and (= 16 (count board)) (and (solved-board? board) (odd? (count (all-available-spots board)))))
+      (last markers)
+    (and (= 16 (count board)) (and (solved-board? board) (even? (count (all-available-spots board)))))
+      (first markers)))
 
 
 
